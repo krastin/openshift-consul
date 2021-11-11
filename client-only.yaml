@@ -1,0 +1,37 @@
+global:
+  name: consul-client
+  datacenter: hoorn
+  image: registry.connect.redhat.com/hashicorp/consul:1.9.6-ubi
+  imageK8S: registry.connect.redhat.com/hashicorp/consul-k8s-control-plane
+  openshift:
+    enabled: true
+  tls:
+    enabled: false
+  acls:
+    manageSystemACLs: false
+    createReplicationToken: false
+
+server:
+  enabled: false
+
+meshGateway:
+  enabled: false
+  replicas: 1
+  service:
+    type: ClusterIP
+
+client:
+  enabled: true
+  grpc: true
+  join: ["orangepipc"]
+  exposeGossipPorts: true
+    
+ui:
+  enabled: true 
+    
+connectInject:
+  enabled: true
+  default: true
+    
+controller:
+  enabled: true
